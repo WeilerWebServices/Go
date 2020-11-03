@@ -1,0 +1,118 @@
+/*
+ * Copyright 2020 The Go Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style
+ * license that can be found in the LICENSE file.
+ */
+*,
+:before,
+:after {
+  box-sizing: border-box;
+}
+html,
+.Site {
+  height: 100%;
+}
+.Site {
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  margin: 0;
+}
+h1,
+h2 {
+  font-weight: 600;
+  letter-spacing: 0.03rem;
+}
+
+h3,
+h4 {
+  font-weight: 600;
+  letter-spacing: 0.08rem;
+}
+h5,
+h6 {
+  font-weight: 500;
+  letter-spacing: 0.08rem;
+}
+.Site-content {
+  flex: 1 0 auto;
+  padding: 0.625rem;
+  width: 100%;
+}
+.Site-header {
+  flex: none;
+}
+.Header {
+  background: #e0ebf5;
+  color: #375eab;
+  padding: 0.625rem;
+}
+.Header-title {
+  font-size: 1.5rem;
+  margin: 0;
+}
+@media only screen and (min-width: 75rem) {
+  .Workflows,
+  .NewWorkflow {
+    width: 74.75rem;
+  }
+}
+@media only screen and (min-width: 48rem) {
+  .Workflows,
+  .NewWorkflow {
+    margin: 0 auto;
+  }
+}
+.Workflows-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.WorkflowList,
+.TaskList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.WorkflowList-sectionTitle {
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+}
+.TaskList {
+  border: 1px solid #d6d6d6;
+  border-radius: 0.25rem;
+}
+.TaskList-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  justify-content: space-between;
+}
+.TaskList-item + .TaskList-item {
+  border-top: 0.0625rem solid #d6d6d6;
+}
+.Button {
+  background: #375eab;
+  border-radius: 0.1875rem;
+  box-shadow: 0 0.1875rem 0.0625rem -0.125rem rgba(0, 0, 0, 0.2),
+    0 0.125rem 0.125rem 0 rgba(0, 0, 0, 0.14),
+    0 0.0625rem 0.3125rem 0 rgba(0, 0, 0, 0.12);
+  color: #fff;
+  font-size: 0.875rem;
+  min-width: 4rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+}
+.Button:hover,
+.Button:focus {
+  background: #3b65b3;
+  box-shadow: 0 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.2),
+    0 0.25rem 0.3125rem 0 rgba(0, 0, 0, 0.14),
+    0 0.0625rem 0.625rem 0 rgba(0, 0, 0, 0.12);
+}
+.Button:active {
+  background: #4373cc;
+  box-shadow: 0 0.3125rem 0.3125rem -0.1875rem rgba(0, 0, 0, 0.2),
+    0 0.5rem 0.625rem 0.0625rem rgba(0, 0, 0, 0.14),
+    0 0.1875rem 0.875rem 0.125rem rgba(0, 0, 0, 0.12);
+}

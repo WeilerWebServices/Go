@@ -1,0 +1,31 @@
+{
+    "target": "golang_build",
+    "selector": "source.go",
+
+    "variants": [
+        {
+            "name": "Run",
+            "task": "run"
+        },
+        {
+            "name": "Test",
+            "task": "test"
+        },
+        {
+            "name": "Benchmark",
+            "task": "benchmark"
+        },
+        {
+            "name": "Install",
+            "task": "install"
+        },
+        {
+            "name": "Cross-Compile (Interactive)",
+            "task": "cross_compile"
+        },
+        {
+            "name": "Clean",
+            "task": "clean"
+        }
+    ]
+}

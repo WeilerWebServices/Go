@@ -1,0 +1,10 @@
+This tool bootstraps a fresh Windows VM into being a Go buildbot.
+
+We cross-compile this into a Windows exe from Mac or Linux or whatever
+and then on Windows do something like this:
+
+  http://golang.org/s/windowsbuilderhowto
+
+The latest windows executable is:
+
+  https://storage.googleapis.com/winstrap/winstrap-2015-02-11-046f2a8.exe

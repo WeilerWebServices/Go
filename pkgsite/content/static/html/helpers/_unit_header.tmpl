@@ -1,0 +1,114 @@
+<!--
+  Copyright 2020 The Go Authors. All rights reserved.
+  Use of this source code is governed by a BSD-style
+  license that can be found in the LICENSE file.
+-->
+
+{{define "unit_header"}}
+  <header class="UnitHeader" role="complementary"
+      aria-label="{{if eq .PageType "std"}}module{{else}}{{.PageType}}{{end}} {{.Title}} information">
+    <div class="UnitHeader-container">
+      <div class="UnitHeader-breadcrumb" data-test-id="UnitHeader-breadcrumb">
+        {{with .Breadcrumb}}
+          {{range .Links}}
+            <span class="UnitHeader-breadcrumbItem" data-test-id="UnitHeader-breadcrumbItem">
+              <a href="{{.Href}}">{{.Body}}</a>
+            </span>
+          {{end}}
+          <span class="UnitHeader-breadcrumbItem">
+            <span data-test-id="UnitHeader-breadcrumbCurrent">{{.Current}}</span>
+            {{if .CopyData}}
+              <button class="CopyToClipboardButton js-copyToClipboard"
+                  title="Copy path to clipboard.&#10;&#10;{{.CopyData}}"
+                  data-to-copy="{{.CopyData}}"
+                  tabindex="-1">
+                <img class="CopyToClipboardButton-image" src="/static/img/copy-click.svg" alt="">
+              </button>
+            {{end}}
+          </span>
+        {{end}}
+      </div>
+      <div class="UnitHeader-heading">
+        <h1 class="UnitHeader-title" data-test-id="UnitHeader-title">
+          {{.Title}}
+        </h1>
+        {{range .PageLabels}}
+          <span class="UnitHeader-badge">{{.}}</span>
+        {{end}}
+      </div>
+      <div class="UnitHeader-versionBanner $$GODISCOVERY_LATESTMAJORCLASS$$">
+        <img height="19px" width="16px" class="UnitHeader-detailIcon" src="/static/img/pkg-icon-info_19x16.svg" alt="">
+        <span>
+          The highest tagged major version is <a href="/$$GODISCOVERY_LATESTMAJORVERSIONURL$$">$$GODISCOVERY_LATESTMAJORVERSION$$</a>.
+        </span>
+      </div>
+      <div class="js-fixedHeaderSentinel"></div>
+      {{if (eq .SelectedTab.Name "")}}
+        <div class="UnitHeader-detail">
+          <span class="UnitHeader-detailItem" data-test-id="UnitHeader-version">
+            <img class="UnitHeader-detailItemLarge" height="16px" width="16px" src="/static/img/pkg-icon-arrowBranch_16x16.svg" alt="">
+            <a href="?tab=versions">Version {{.DisplayVersion}}</a>
+            <!-- Do not reformat the data attributes of the following div: the server uses a regexp to extract them. -->
+            <div class="DetailsHeader-badge $$GODISCOVERY_LATESTMINORCLASS$$"
+                data-version="{{.LinkVersion}}" data-mpath="{{.Unit.ModulePath}}" data-ppath="{{.Unit.Path}}" data-pagetype="{{.PageType}}">
+              <span>Latest</span>
+              <a href="{{.LatestURL}}">Go to latest</a>
+            </div>
+          </span>
+          <span class="UnitHeader-detailItem" data-test-id="UnitHeader-commitTime">
+            <img height="16px" width="16px" src="/static/img/pkg-icon-circularArrows_16x16.svg" alt="">
+            {{.Details.CommitTime}}
+          </span>
+          <span class="UnitHeader-detailItem" data-test-id="UnitHeader-licenses">
+            <img height="16px" width="16px" src="/static/img/pkg-icon-scale_16x16.svg" alt="">
+            {{- if .Details.Licenses -}}
+              {{- if .Unit.IsRedistributable -}}
+                <a href="{{$.URLPath}}?tab=licenses" data-test-id="UnitHeader-license">
+                  {{- range $i, $e := .Details.Licenses -}}
+                    {{if $i}}, {{end}}{{$e.Type}}
+                  {{- end -}}
+                </a>
+              {{else}}
+                <span>
+                  {{- range $i, $e := .Details.Licenses -}}
+                    {{if $i}}, {{end}} {{$e.Type}}
+                  {{- end -}}
+                </span>
+                <a href="/license-policy" class="Disclaimer-link"><em>not legal advice</em></a>
+              {{end}}
+            {{else}}
+              <span>None detected</span>
+              <a href="/license-policy" class="Disclaimer-link"><em>not legal advice</em></a>
+            {{end}}
+          </span>
+          {{if .Unit.IsPackage}}
+            <span class="UnitHeader-detailItem" data-test-id="UnitHeader-imports">
+              <img height="16px" width="16px" src="/static/img/pkg-icon-boxClosed_16x16.svg" alt="">
+              <a href="{{$.URLPath}}?tab=imports">
+                {{.Details.NumImports}} <span>Imports</span>
+              </a>
+            </span>
+            <span class="UnitHeader-detailItem" data-test-id="UnitHeader-importedby">
+              <img height="16px" width="16px" src="/static/img/pkg-icon-boxClosed_16x16.svg" alt="">
+              <a href="{{$.URLPath}}?tab=importedby">
+                {{.Details.ImportedByCount}} <span>Imported by</span>
+              </a>
+            </span>
+          {{end}}
+        </div>
+      {{else}}
+        <div class="UnitHeader-detail">
+          <span class="UnitHeader-detailItem">
+          <!-- Do not reformat the data attributes of the following div: the server uses a regexp to extract them. -->
+          <div style="display: none;" class="DetailsHeader-badge $$GODISCOVERY_LATESTMINORCLASS$$"
+              data-version="{{.LinkVersion}}" data-mpath="{{.Unit.ModulePath}}" data-ppath="{{.Unit.Path}}" data-pagetype="{{.PageType}}">
+          </div>
+          <a class="UnitHeader-backLink" href="{{.URLPath}}">
+            <img height="16px" width="16px" src="/static/img/pkg-icon-arrowLeft_16x16.svg" alt=""> Go to main page
+          </a>
+          </span>
+        </div>
+      {{end}}
+    </div>
+  </header>
+{{end}}
